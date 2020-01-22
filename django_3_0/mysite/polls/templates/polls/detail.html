@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <title>Detalhes</title>
+</head>
+<body>
+    <h4>{{questao.texto_questao}}</h4>
+
+    {% if error_message %}<p><strong style="color:red">{{error_message}}</strong></p>{% endif %}
+    <form action="{% url 'polls:vote' questao.id %}" method="post">
+        {% csrf_token %}
+        {% for opcao in questao.opcao_set.all %}
+        <input type="radio" name="opcao" id="opcao{{forloop.counter}}" value="{{opcao.id}}">
+        <label for="opcao{{forloop.counter}}">{{opcao.texto_opcao}}</label><br>
+        {% empty %}
+        <p>Bloco Vazio.</p>
+        {% endfor %}
+        <input type="submit" value="Vote">
+
+    </form>
+</body>
+</html>

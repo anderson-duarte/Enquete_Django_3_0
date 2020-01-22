@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Questões</title>
+</head>
+<body>
+    <ul>
+        {% for quest in questoes %}
+        <li><a href="{% url 'polls:detail' quest.id %}">{{quest.texto_questao}}</a></li>
+        {% empty %}
+            <p>Não há questoes salvas</p>
+        {% endfor %}
+    </ul>
+</body>
+</html>

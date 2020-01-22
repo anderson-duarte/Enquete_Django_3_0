@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Resultados</title>
+</head>
+<body>
+
+    <h3>{{questao.texto_questao}}</h3>
+    <ul>
+        {% for opcao in questao.opcao_set.all %}
+        <li>{{opcao.texto_opcao}} --> {{opcao.votos}} vote{{opcao.votos|pluralize}}</li>
+        {% empty %}
+        <p>Bloco Vazio</p>
+        {% endfor %}
+    </ul>
+    <a href="{% url 'polls:detail' questao.id %}">Votar Novamente?</a>
+</body>
+</html>
